@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Asesorías GYD | Parcelas y Proyectos</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f3;
+            color: #26352b;
+        }
+
+        /* =========================
+           NAVEGACIÓN
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #26352b;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #9bc59e;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #a9d1ac;
+        }
+
+        /* =========================
+           PORTADA
+        ========================= */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    rgba(20, 35, 25, .65),
+                    rgba(20, 35, 25, .65)
+                ),
+                url("Fotos/imc.jpg") center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-small {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 18px;
+            color: #c5ddc6;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #a9d1ac;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 750px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #3f7d4c;
+            color: white;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .hero-btn:hover {
+            background: #32663d;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 80px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 14px;
+        }
+
+        .section-title p {
+            color: #657067;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PROYECTOS
+        ========================= */
+
+        .projects {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+            transition: .25s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, .13);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-content {
+            padding: 28px;
+        }
+
+        .project-content h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .location {
+            color: #52705a;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .project-content p {
+            color: #59635b;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .feature {
+            background: #f0f4ef;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2f6b3c;
+            margin-bottom: 20px;
+        }
+
+        .project-btn {
+            display: block;
+            text-align: center;
+            background: #2f6b3c;
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .project-btn:hover {
+            background: #245630;
+        }
+
+        /* =========================
+           SOBRE ASESORÍAS GYD
+        ========================= */
+
+        .about {
+            background: white;
+        }
+
+        .about-box {
+            max-width: 950px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-box h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: #59635b;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .about-highlight {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .highlight {
+            background: #f4f6f3;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .highlight-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .highlight h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .highlight p {
+            font-size: 14px;
+            color: #657067;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FINANCIAMIENTO
+        ========================= */
+
+        .financing {
+            background: #eef3ed;
+        }
+
+        .financing-box {
+            max-width: 1050px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .financing-box h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .financing-box > p {
+            color: #59635b;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .financing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .finance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, .05);
+        }
+
+        .finance-card strong {
+            display: block;
+            font-size: 24px;
+            color: #2f6b3c;
+            margin-bottom: 8px;
+        }
+
+        .finance-card span {
+            color: #657067;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTACTO
+        ========================= */
+
+        .contact {
+            background: #26352b;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #d8e0d9;
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .messenger {
+            background: #1877F2;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #1d281f;
+            color: #aeb8b0;
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MÓVIL
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                min-height: 570px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .about-highlight {
+                grid-template-columns: 1fr;
+            }
+
+            .financing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                height: 270px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-small {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2,
+            .about-box h2,
+            .financing-box h2,
+            .contact h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+
+    <nav>
+
+        <div class="logo">
+            Asesorías <span>GYD</span>
+        </div>
+
+        <div>
+
+            <a href="#proyectos">
+                Proyectos
+            </a>
+
+            <a href="#nosotros">
+                Nosotros
+            </a>
+
+            <a href="#financiamiento">
+                Financiamiento
+            </a>
+
+            <a href="#contacto">
+                Contacto
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- PORTADA -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Asesorías GYD
+            </div>
+
+            <h1>
+                Encuentre su
+                <span>próximo lugar</span>
+            </h1>
+
+            <p>
+                Conozca nuestros proyectos de parcelas
+                y encuentre una alternativa para vivir,
+                disfrutar de la naturaleza o invertir.
+            </p>
+
+            <a
+                href="#proyectos"
+                class="hero-btn"
+            >
+                Ver proyectos
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- PROYECTOS -->
+
+    <section id="proyectos">
+
+        <div class="section-title">
+
+            <h2>
+                Nuestros proyectos
+            </h2>
+
+            <p>
+                Conozca nuestras alternativas disponibles
+                y revise la información de cada proyecto.
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+
+            <!-- ESTANCIA CAUQUENES -->
+
+            <article class="project-card">
+
+                <img
+                    src="Fotos/imc.jpg"
+                    alt="Estancia Cauquenes"
+                    class="project-image"
+                >
+
+                <div class="project-content">
+
+                    <h3>
+                        Estancia Cauquenes
+                    </h3>
+
+                    <div class="location">
+                        📍 San Manuel, Región del Maule
+                    </div>
+
+                    <p>
+                        Proyecto de parcelas de 5.000 m²
+                        ubicado aproximadamente a 10 minutos
+                        de Cauquenes, en un entorno natural
+                        y tranquilo.
+                    </p>
+
+                    <div class="features">
+
+                        <div class="feature">
+                            📐 5.000 m²
+                        </div>
+
+                        <div class="feature">
+                            📑 Rol propio
+                        </div>
+
+                        <div class="feature">
+                            💧 Factibilidad de agua
+                        </div>
+
+                        <div class="feature">
+                            ⚡ Factibilidad de luz
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        Desde $12.990.000
+                    </div>
+
+                    <a
+                        href="estancia-cauquenes.html"
+                        class="project-btn"
+                    >
+                        Ver proyecto
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- MARÍA PINTO -->
+
+            <article class="project-card">
+
+                <img
+                    src="Fotos/imp.jpg"
+                    alt="Parcelas en María Pinto"
+                    class="project-image"
+                >
+
+                <div class="project-content">
+
+                    <h3>
+                        María Pinto
+                    </h3>
+
+                    <div class="location">
+                        📍 Provincia de Melipilla, Región Metropolitana
+                    </div>
+
+                    <p>
+                        Parcelas de 5.000 m² en un entorno
+                        tranquilo y natural, a aproximadamente
+                        10 minutos del centro de María Pinto
+                        y 50 minutos de Santiago.
+                        El proyecto cuenta con toda su documentación,
+                        incluido rol propio.
+                    </p>
+
+                    <div class="features">
+
+                        <div class="feature">
+                            📐 5.000 m²
+                        </div>
+
+                        <div class="feature">
+                            📦 100 parcelas
+                        </div>
+
+                        <div class="feature">
+                            📑 Rol propio
+                        </div>
+
+                        <div class="feature">
+                            📋 Documentación completa
+                        </div>
+
+                        <div class="feature">
+                            💧 Agua
+                        </div>
+
+                        <div class="feature">
+                            ⚡ Luz
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        Desde $59.990.000
+                    </div>
+
+                    <a
+                        href="maria-pinto.html"
+                        class="project-btn"
+                    >
+                        Ver proyecto
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE ASESORÍAS GYD -->
+
+    <section
+        id="nosotros"
+        class="about"
+    >
+
+        <div class="about-box">
+
+            <h2>
+                Asesorías GYD
+            </h2>
+
+            <p>
+                Le ayudamos a conocer diferentes alternativas
+                de parcelas y proyectos inmobiliarios,
+                entregándole información clara sobre cada
+                oportunidad disponible.
+            </p>
+
+
+            <div class="about-highlight">
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        🌿
+                    </div>
+
+                    <h3>
+                        Proyectos
+                    </h3>
+
+                    <p>
+                        Conozca diferentes alternativas
+                        de terrenos y parcelas.
+                    </p>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        Información
+                    </h3>
+
+                    <p>
+                        Revise las características y
+                        condiciones de cada proyecto.
+                    </p>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Asesoría
+                    </h3>
+
+                    <p>
+                        Resuelva sus dudas y solicite
+                        información sobre disponibilidad.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINANCIAMIENTO -->
+
+    <section
+        id="financiamiento"
+        class="financing"
+    >
+
+        <div class="financing-box">
+
+            <h2>
+                Alternativas de financiamiento
+            </h2>
+
+            <p>
+                Algunos de nuestros proyectos cuentan
+                con alternativas de crédito directo.
+                Consulte las condiciones disponibles
+                para cada proyecto.
+            </p>
+
+
+            <div class="financing-cards">
+
+                <div class="finance-card">
+
+                    <strong>
+                        Crédito directo
+                    </strong>
+
+                    <span>
+                        Alternativas de financiamiento
+                        disponibles según proyecto.
+                    </span>
+
+                </div>
+
+
+                <div class="finance-card">
+
+                    <strong>
+                        Desde $4.000.000
+                    </strong>
+
+                    <span>
+                        Pie mínimo disponible en
+                        nuestros proyectos con crédito directo.
+                    </span>
+
+                </div>
+
+
+                <div class="finance-card">
+
+                    <strong>
+                        Cuotas
+                    </strong>
+
+                    <span>
+                        Diferentes plazos según las
+                        condiciones de cada proyecto.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACTO -->
+
+    <section
+        id="contacto"
+        class="contact"
+    >
+
+        <h2>
+            ¿Quiere conocer más?
+        </h2>
+
+        <p>
+            Contáctenos para consultar disponibilidad,
+            precios y condiciones de nuestros proyectos.
+        </p>
+
+        <div class="contact-buttons">
+
+            <a
+                href="https://wa.me/56985420887"
+                target="_blank"
+                class="contact-btn whatsapp"
+            >
+                WhatsApp
+            </a>
+
+            <a
+                href="https://www.facebook.com/share/1Gx3aYc5tW/"
+                target="_blank"
+                class="contact-btn messenger"
+            >
+                Messenger
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 Asesorías GYD.
+        Todos 
